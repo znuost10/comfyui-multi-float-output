@@ -18,6 +18,14 @@ class MultiFloatInputNode:
             }
         }
 
+    RETURN_TYPES = ("FLOAT", "FLOAT", "FLOAT", "FLOAT", "FLOAT", "FLOAT", "FLOAT", "FLOAT", "FLOAT", "FLOAT")
+    FUNCTION = "output_floats"
+    CATEGORY = "utils"
+
+    @classmethod
+    def IS_CHANGED(cls, **kwargs):
+        return float("NaN")
+
     def output_floats(self, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10):
         return (torch.tensor([value1], dtype=torch.float32),
                 torch.tensor([value2], dtype=torch.float32),
@@ -30,11 +38,10 @@ class MultiFloatInputNode:
                 torch.tensor([value9], dtype=torch.float32),
                 torch.tensor([value10], dtype=torch.float32))
 
-# Simulate node execution
-node = MultiFloatInputNode()
-sample_values = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9]
-outputs = node.output_floats(*sample_values)
+NODE_CLASS_MAPPINGS = {
+    "MultiFloatInputNode": MultiFloatInputNode
+}
 
-# Print results
-for i, output in enumerate(outputs, 1):
-    print(f"Output {i}: {output.item()}")
+NODE_DISPLAY_NAME_MAPPINGS = {
+    "MultiFloatInputNode": "Multi Float Input"
+}
