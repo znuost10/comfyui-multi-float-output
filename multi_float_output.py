@@ -5,7 +5,7 @@ class MultiFloatInputNode:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "value1": ("FLOAT1", {"default": 0.2, "min": -10.0, "max": 10.0, "step": 0.01}),
+                "value1": ("FLOAT", {"default": 0.2, "min": -10.0, "max": 10.0, "step": 0.01}),
                 "value2": ("FLOAT", {"default": 0.2, "min": -10.0, "max": 10.0, "step": 0.01}),
                 "value3": ("FLOAT", {"default": 0.2, "min": -10.0, "max": 10.0, "step": 0.01}),
                 "value4": ("FLOAT", {"default": 0.2, "min": -10.0, "max": 10.0, "step": 0.01}),
