@@ -28,7 +28,7 @@ class MultiFloatInputNode:
     def IS_CHANGED(cls, **kwargs):
         return float("NaN")
 
-    def output_floats(self, custom_names, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10):
+    def output_floats(self, custom_names, value1, value2, value3, value4, value5, value6, "value7", value8, value9, value10):
         # Parse custom names (for internal use or logging, not UI renaming)
         custom_names_list = [name.strip() for name in custom_names.split(',') if name.strip()]
         if len(custom_names_list) < 10:
