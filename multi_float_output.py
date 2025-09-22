@@ -1,42 +1,35 @@
 import torch
 
-class MultiFloatOutputNode:
+class MultiFloatInputNode:
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "float_list": ("STRING", {
-                    "default": "0.1, 0.2, 0.3",
-                    "multiline": False,
-                    "placeholder": "Enter comma-separated floats, e.g., 0.1, 0.2, 0.3"
-                }),
+                "value1": ("FLOAT", {"default": 0.2, "min": -10.0, "max": 10.0, "step": 0.01}),
+                "value2": ("FLOAT", {"default": 0.2, "min": -10.0, "max": 10.0, "step": 0.01}),
+                "value3": ("FLOAT", {"default": 0.2, "min": -10.0, "max": 10.0, "step": 0.01}),
+                "value4": ("FLOAT", {"default": 0.2, "min": -10.0, "max": 10.0, "step": 0.01}),
             }
         }
 
-    RETURN_TYPES = ("FLOAT",)
-    FUNCTION = "split_floats"
+    RETURN_TYPES = ("FLOAT", "FLOAT", "FLOAT", "FLOAT")
+    FUNCTION = "output_floats"
     CATEGORY = "utils"
 
     @classmethod
     def IS_CHANGED(cls, **kwargs):
         return float("NaN")
 
-    def split_floats(self, float_list):
-        try:
-            float_values = [float(x.strip()) for x in float_list.split(',') if x.strip()]
-            if not float_values:
-                raise ValueError("No valid floats provided.")
-        except ValueError as e:
-            raise ValueError(f"Invalid float list: {e}. Use comma-separated values like '0.1, 0.2, 0.3'.")
-
-        outputs = tuple(torch.tensor([val], dtype=torch.float32) for val in float_values)
-        self.RETURN_TYPES = ("FLOAT",) * len(outputs)
-        return outputs
+    def output_floats(self, value1, value2, value3, value4):
+        return (torch.tensor([value1], dtype=torch.float32),
+                torch.tensor([value2], dtype=torch.float32),
+                torch.tensor([value3], dtype=torch.float32),
+                torch.tensor([value4], dtype=torch.float32))
 
 NODE_CLASS_MAPPINGS = {
-    "MultiFloatOutputNode": MultiFloatOutputNode
+    "MultiFloatInputNode": MultiFloatInputNode
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "MultiFloatOutputNode": "Multi Float Output"
+    "MultiFloatInputNode": "Multi Float Input"
 }
