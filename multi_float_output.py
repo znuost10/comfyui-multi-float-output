@@ -5,9 +5,13 @@ class MultiFloatInputNode:
     def INPUT_TYPES(cls):
         return {
             "required": {
+                "label1": ("STRING", {"default": "Value1", "multiline": False}),
                 "value1": ("FLOAT", {"default": 0.2, "min": -10.0, "max": 10.0, "step": 0.01}),
+                "label2": ("STRING", {"default": "Value2", "multiline": False}),
                 "value2": ("FLOAT", {"default": 0.2, "min": -10.0, "max": 10.0, "step": 0.01}),
+                "label3": ("STRING", {"default": "Value3", "multiline": False}),
                 "value3": ("FLOAT", {"default": 0.2, "min": -10.0, "max": 10.0, "step": 0.01}),
+                "label4": ("STRING", {"default": "Value4", "multiline": False}),
                 "value4": ("FLOAT", {"default": 0.2, "min": -10.0, "max": 10.0, "step": 0.01}),
             }
         }
